@@ -40,3 +40,4 @@ class Solution:
         return root
 ```
 **NOTE: None 不等同于空list**
+**解题关键：熟悉二叉树遍历定义，前序遍历最先访问根结点，中序遍历访问完左子树，再访问根结点。**
