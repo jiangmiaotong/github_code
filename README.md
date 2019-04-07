@@ -1,7 +1,7 @@
 **剑指offer——牛客网**  
 =
 ***
-007 重建二叉树
+003 重建二叉树
 -
 ```python
 # -*- coding:utf-8 -*-
@@ -39,5 +39,8 @@ class Solution:
         root.right = self.reConstructBinaryTree(pre[i+1:], tin[i+1:])
         return root
 ```
-**NOTE: None 不等同于空list**
-**解题关键：熟悉二叉树遍历定义，前序遍历最先访问根结点，中序遍历访问完左子树，再访问根结点。**
+**NOTE: None 不等同于空list**  
+**解题关键：熟悉二叉树遍历定义，前序遍历最先访问根结点，中序遍历访问完左子树，再访问根结点。** 
+
+004 用两个栈实现队列
+-
