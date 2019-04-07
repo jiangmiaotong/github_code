@@ -22,4 +22,21 @@ class Solution:
         root.right = self.reConstructBinaryTree(pre[cut+1:], tin[cut+1:])
         return root
 ```
+
+```python
+class Solution:
+    # 返回构造的TreeNode根节点
+    def reConstructBinaryTree(self, pre, tin):
+        # write code here
+        if pre == []:
+            return None
+        for i in range(len(pre)):
+            if tin[i] == pre[0]:
+                break
+        root = TreeNode(pre[0])
+        #cut = tin.index(pre[0])
+        root.left = self.reConstructBinaryTree(pre[1:i+1], tin[:i])
+        root.right = self.reConstructBinaryTree(pre[i+1:], tin[i+1:])
+        return root
+```
 **NOTE: None 不等同于空list**
