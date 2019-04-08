@@ -65,12 +65,36 @@ class Solution:
 ```
 **解题思路：栈和队列的区别只在pop的时候有所体现，因此对删除元素的几种情形进行画图举例，即可得出解题思路。**  
 
-005 
+005 旋转数组的最小数字
 -
 ```python
-
+# -*- coding:utf-8 -*-
+class Solution:
+    def minNumberInRotateArray(self, rarray):
+        # write code here
+        if rarray == []:
+            return 0
+        l = 0
+        r = len(rarray) - 1
+        if rarray[l] < rarray[r]:
+            return rarray[0]
+        while (r-l) > 1:
+            mid = (l+r)/2
+            if (rarray[l] == rarray[r]) & (rarray[mid] == rarray[l]):
+                return self.minarray(rarray[l,r])
+            if rarray[mid] >= rarray[l]:
+                l = mid
+            else:
+                r = mid
+        return rarray[r]
+    def minarray(self, array):
+        m = array[0]
+        for i in array:
+            if i < m:
+                m = i
+        return m
 ```
-****    
+**解题关键：类排序数组联想到二分查找，再举例分析查找过程中的各种情形，形成思路。**    
 
 00
 -
