@@ -80,8 +80,8 @@ class Solution:
             return rarray[0]
         while (r-l) > 1:
             mid = (l+r)/2
-            if (rarray[l] == rarray[r]) & (rarray[mid] == rarray[l]):
-                return self.minarray(rarray[l,r])
+            if (rarray[l] == rarray[r]) & (rarray[mid] == rarray[l]): #此时无法判断最小元素可能出现在哪侧，因此无法缩小搜索范围
+                return self.minarray(rarray[l,r])  #顺序查找 O(n)
             if rarray[mid] >= rarray[l]:
                 l = mid
             else:
@@ -94,7 +94,7 @@ class Solution:
                 m = i
         return m
 ```
-**解题关键：类排序数组联想到二分查找，再举例分析查找过程中的各种情形，形成思路。**    
+**解题关键：首先分析旋转数组头尾数字（<, =, >）的三种情况，同时类排序数组联想到二分查找（头尾两根指针），再举例分析查找过程中mid对应数字相对于数组头尾元素的三种情况，统计规律，形成思路。**    
 
 00
 -
