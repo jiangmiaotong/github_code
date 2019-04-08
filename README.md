@@ -96,10 +96,34 @@ class Solution:
 ```
 **解题关键：首先分析旋转数组头尾数字（<, =, >）的三种情况，同时类排序数组联想到二分查找（头尾两根指针），再举例分析查找过程中mid对应数字相对于数组头尾元素的三种情况，统计规律，形成思路。**    
 
-00
+006 斐波那契数列
 -
 ```python
-
+递归写法：简单但重复计算量大，超时。
+# -*- coding:utf-8 -*-
+class Solution:
+    def Fibonacci(self, n):
+        # write code here
+        if n == 0:
+            return 0
+        if n == 1:
+            return 1
+        return self.Fibonacci(n-1) + self.Fibonacci(n-2)
+非递归写法：将重复计算以中间量暂存下来，节约计算量——迭代
+# -*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
+class Solution:
+    def Fibonacci(self, n):
+        # write code here
+        if n == 0:
+            return 0
+        if n == 1:
+            return 1
+        f1 = 0
+        f2 = 1
+        for _ in range(n-1):
+            f1, f2 = f2, f1+f2
+        return f2
 ```
 ****  
 
