@@ -125,7 +125,7 @@ class Solution:
             f1, f2 = f2, f1+f2
         return f2
 ```
-****  
+**知识点：菲波那切数列 f(n) = f(n-1) + f(n-2)**  
 
 00
 -
