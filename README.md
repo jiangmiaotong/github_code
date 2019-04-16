@@ -127,12 +127,21 @@ class Solution:
 ```
 **知识点：菲波那切数列 f(n) = f(n-1) + f(n-2)**  
 
-00
+007 青蛙跳台阶
 -
 ```python
-
+# -*- coding:utf-8 -*-
+class Solution:
+    def jumpFloor(self, number):
+        # write code here
+        f1 = 1
+        f2 = 1
+        while (number > 1):
+            f1, f2 = f2, f1+f2
+            number = number - 1 
+        return f2
 ```
-****  
+**解题思路：从一级台阶开始归纳，一级只能先跳1，对应方法有f(0)=1种，2级可以先跳1，对应方法有f(2-1)种，也可以先跳2，对应方法有f(2-2)=f(0)=1种，，，f(n) = f(n-1) + f(n-2)**  
 
 00
 -
