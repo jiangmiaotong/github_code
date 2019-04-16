@@ -143,12 +143,20 @@ class Solution:
 ```
 **解题思路：从一级台阶开始归纳，一级只能先跳1，对应方法有f(0)=1种，2级可以先跳1，对应方法有f(2-1)种，也可以先跳2，对应方法有f(2-2)=f(0)=1种，，，f(n) = f(n-1) + f(n-2)**  
 
-00
+008 变态跳台阶
 -
 ```python
-
+# -*- coding:utf-8 -*-
+class Solution:
+    def jumpFloorII(self, number):
+        # write code here
+        l = [1]
+        while number > 1 :
+            l.append(sum(l))
+            number = number - 1
+        return sum(l)
 ```
-****  
+**解题思路：从一级台阶开始归纳，f(n) = f(n-1) + f(n-2) + ... + f(0),需要保存所有中间结果。**  
 
 00
 -
