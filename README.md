@@ -158,12 +158,23 @@ class Solution:
 ```
 **解题思路：从一级台阶开始归纳，f(n) = f(n-1) + f(n-2) + ... + f(0),需要保存所有中间结果。**  
 
-00
+00 矩形覆盖
 -
 ```python
-
+# -*- coding:utf-8 -*-
+class Solution:
+    def rectCover(self, number):
+        # write code here
+        if number == 0:
+            return 0
+        f1 = 1 
+        f2 = 1
+        while number > 1:
+            f1, f2 = f2, f1+f2
+            number = number - 1
+        return f2
 ```
-****  
+**解题思路：可以类比于跨台阶，横放小矩形时必须一次放两个，就相当于一步跨两个。因此还是斐波那契数列。**  
 
 00
 -
