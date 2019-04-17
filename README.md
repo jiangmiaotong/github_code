@@ -176,12 +176,70 @@ class Solution:
 ```
 **解题思路：可以类比于跨台阶，横放小矩形时必须一次放两个，就相当于一步跨两个。因此还是斐波那契数列。**  
 
-00
+010 二进制中1的个数
 -
-```python
 
+```python
+**错误解法：采用flag左移的方式时，由于python中的int是无限大的，会发生左移进入死循环的情况。
+c++使用unsigned int flag进行循环限制。**
+# -*- coding:utf-8 -*-
+class Solution:
+    def NumberOf1(self, n):
+        # write code here
+        count = 0
+        flag = 1
+        while(flag):
+            if (n & flag):
+                count = count + 1 
+            flag = flag << 1
+        return count
 ```
-****  
+```python
+# -*- coding:utf-8 -*-
+**手动进行位数限制**
+class Solution:
+    def NumberOf1(self, n):
+        # write code here
+        count = 0
+        flag = 1
+        for _ in range(32):
+            if (n & flag):
+                count = count + 1 
+            flag = flag << 1
+        return count
+```
+
+```python
+**右移解法:负数用补码表示。**
+# -*- coding:utf-8 -*-
+class Solution:
+    def NumberOf1(self, n):
+        # write code here
+        count = 0
+        if n < 0:
+            n = n & 0xffffffff
+        while(n):
+            if (n & 1):
+                count = count + 1
+            n = n >> 1
+        return count
+```
+```python
+**将1逐个消除的解法，需要循环次数最少**
+# -*- coding:utf-8 -*-
+class Solution:
+    def NumberOf1(self, n):
+        # write code here
+        bits = 0
+        if n < 0:
+            n = n & 0xffffffff   
+#python中负数使用-ob加原码表示，与0xffffffff（0b11111111111111111111111111111111）相与，不改变n的情况下，将n转成补码表示。
+        while n:
+            bits += 1
+            n = (n-1) & n
+        return bits
+```
+**知识点：位运算会把数字用二进制表示（并不会将操作符左右两边数字补成相同位数），可对每一位上的0或者1做与(&)、或(|)、异或(^)、左移(<<)、右移(>>)操作。需要注意的是左移n位操作直接丢弃最左边n位，最右边补上n个0；右移n位操作丢弃最右边n位，但是数字为正时最左边补n位0，数字为负时最左边补n位1。因此，需要特别注意位运算中负数情况的处理。**  
 
 00
 -
