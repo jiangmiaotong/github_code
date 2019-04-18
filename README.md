@@ -288,19 +288,70 @@ class Solution:
 ```
 **优化解法：快速幂方法，将幂不断二分(eg:2**10=2**5 * 2**5)，O(logn)次循环。**  
 
-00
+012 调整数组顺序使奇数位于偶数前面
 -
 ```python
-
+**空间换时间：遍历一遍存到两个list中。**
+# -*- coding:utf-8 -*-
+class Solution:
+    def reOrderArray(self, array):
+        # write code here
+        l1 = []
+        l2 = []
+        for i in array:
+            l1.append(i) if (i & 1) else l2.append(i)
+        return l1+l2
 ```
-****  
+```python
+**利用sorted函数的高级用法**
+# -*- coding:utf-8 -*-
+class Solution:
+    def reOrderArray(self, array):
+        # write code here
+        return sorted(array,key=lambda c:c&1,reverse=True)
+```
 
-00
+013 链表中倒数第k个结点
 -
 ```python
+**遍历链表两次的解法，注意处理链表为空和k大于链表长度的情况。**
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
 
+class Solution:
+    def FindKthToTail(self, head, k):
+        # write code here
+        if head == None:
+            return None
+        phead = head
+        count = 1
+        while(head.next != None):
+            count = count + 1
+            head = head.next
+        if count < k:
+            return None
+        for _ in range(0, count - k):
+            phead = phead.next
+        return phead
 ```
-****  
+
+```python
+class Solution:
+    def FindKthToTail(self, head, k):
+        # write code here
+        slow = fast = head 
+        for _ in range(k):
+            if fast == None:
+                return None
+            fast = fast.next
+        while(fast):
+            slow, fast= slow.next, fast.next
+        return slow
+```
+**解题关键：采用快慢两根指针的解法，只需遍历链表一次。（常用技巧！）**  
 
 00
 -
