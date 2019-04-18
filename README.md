@@ -241,12 +241,52 @@ class Solution:
 ```
 **知识点：位运算会把数字用二进制表示（并不会将操作符左右两边数字补成相同位数），可对每一位上的0或者1做与(&)、或(|)、异或(^)、左移(<<)、右移(>>)操作。需要注意的是左移n位操作直接丢弃最左边n位，最右边补上n个0；右移n位操作丢弃最右边n位，但是数字为正时最左边补n位0，数字为负时最左边补n位1。因此，需要特别注意位运算中负数情况的处理。**  
 
-00
+011 数值的整数次方
 -
 ```python
-
+**普通解法：不能调用库函数（幂**），用乘法计算时需要考虑全面,base==0,exp==0,exp<0.**
+# -*- coding:utf-8 -*-
+class Solution:
+    def Power(self, base, exponent):
+        # write code here
+        if exponent == 0:
+            return 1
+        if base == 0:
+            return 0
+        re = 1
+        if exponent > 0:
+            for _ in range(exponent):
+                re = re * base
+        elif exponent < 0:
+            for _ in range(-exponent):
+                re = re * base
+            re = 1/re
+        return re
 ```
-****  
+
+```python
+# -*- coding:utf-8 -*-
+class Solution:
+    def power(self, x, n):
+        if n == 0:
+            return 1
+        res = self.power(x, n >>1)
+        res = res * res
+        if (n & 1) == 0:
+            return res
+        return res*x
+    def Power(self, base, exponent):
+        # write code here
+        if exponent == 0:
+            return 1
+        if base == 0:
+            return 0
+        if exponent > 0:
+            return self.power(base, exponent)
+        elif exponent < 0:
+            return 1/self.power(base, -exponent)
+```
+**优化解法：快速幂方法，将幂不断二分(eg:2**10=2**5 * 2**5)，O(logn)次循环。**  
 
 00
 -
