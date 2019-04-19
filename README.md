@@ -387,14 +387,76 @@ class Solution:
 ```
 **善用python的赋值特性，使反转更简单。**  
 
-015
+015 合并两个排序的链表
 -
 ```python
-
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+**将链表2往链表1里逐个插入的迭代解法**
+class Solution:
+    # 返回合并后列表
+    def Merge(self, pHead1, pHead2):
+        # write code here
+       
+        if not pHead2 or not pHead1:
+            return pHead2 or pHead1 
+        '''
+        The and and or operators do return one of their operands,
+        not a pure boolean value like True or False
+        '''
+        #p1 = ListNode(0)
+        p1 = pHead1
+        while(pHead2 and pHead1.next):
+            if (pHead2.val > pHead1.next.val):
+                pHead1 = pHead1.next
+            else:
+                pHead1.next, pHead2.next, pHead2 = pHead2, pHead1.next, pHead2.next
+                pHead1 = pHead1.next
+        if pHead1.next == None:
+            pHead1.next = pHead2
+        return p1
 ```
-****  
+```python
+**优化的迭代解法：逐个取当前最小值形成新链表——边界条件更容易处理。**
+class Solution:
+    # 返回合并后列表
+    def Merge(self, pHead1, pHead2):
+        # write code here
+        # The and and or operators do return one of their operands,
+        # not a pure boolean value like True or False
+        if not pHead2 or not pHead1:
+            return pHead2 or pHead1
+        p1 = new = ListNode(0)
+        while(pHead2 and pHead1):
+            if pHead1.val < pHead2.val:
+                new.next, pHead1 = pHead1, pHead1.next
+            else:
+                new.next, pHead2 = pHead2, pHead2.next
+            new = new.next
+        new.next = pHead1 or pHead2
+        return p1.next
+```  
 
-016
+```python
+**递归解法：清晰简洁，但是判断语句重复计算多次。**
+class Solution:
+    # 返回合并后列表
+    def Merge(self, pHead1, pHead2):
+        # write code here
+        if pHead1 == None:
+            return pHead2
+        if pHead2 == None:
+            return pHead1
+        if pHead2.val < pHead1.val:
+            pHead2.next = self.Merge(pHead1, pHead2.next)
+            return pHead2
+        pHead1.next = self.Merge(pHead2, pHead1.next)
+        return pHead1
+```
+016 树的子结构
 -
 ```python
 
