@@ -353,12 +353,39 @@ class Solution:
 ```
 **解题关键：采用快慢两根指针的解法，只需遍历链表一次。（常用技巧！）**  
 
-00
+014 反转链表
 -
 ```python
-
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    # 返回ListNode
+    def ReverseList(self, pHead):
+        # write code here
+        prev = None
+        p = new = pHead
+        while(p):
+            new = p.next
+            p.next = prev
+            prev = p
+            p = new
+        return prev
 ```
-****  
+
+```python
+class Solution:
+    # 返回ListNode
+    def ReverseList(self, pHead):
+        # write code here
+        prev = None
+        while(pHead):
+            pHead.next, pHead, prev = prev, pHead.next, pHead
+        return prev
+```
+**善用python的赋值特性，使反转更简单。**  
 
 00
 -
