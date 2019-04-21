@@ -484,7 +484,7 @@ class Solution:
             return self.issubtree(p1.left, p2.left) and self.issubtree(p1.right, p2.right)
         return False
 ```
-**解题关键：嵌套两个递归，注意拆分成两个函数。**  
+**解题关键：嵌套两个递归，一个是递归遍历A树寻找与B树根节点相同的节点，一个是递归判断A树中该节点为根节点的子树是否和B树有相同结构。因此，要注意拆分成两个函数。**  
 
 017
 -
