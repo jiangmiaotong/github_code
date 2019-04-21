@@ -459,9 +459,32 @@ class Solution:
 016 树的子结构
 -
 ```python
-
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def HasSubtree(self, pRoot1, pRoot2):
+        if pRoot2 == None:
+            return False
+        if pRoot1:
+            if pRoot1.val == pRoot2.val:
+                if (self.issubtree(pRoot1.left, pRoot2.left) and self.issubtree(pRoot1.right, pRoot2.right)):
+                    return True
+            return self.HasSubtree(pRoot1.left, pRoot2) or self.HasSubtree(pRoot1.right, pRoot2)
+        return False
+    def issubtree(self, p1, p2):
+        if p2 == None:
+            return True
+        if p1 == None:
+            return False
+        if p1.val == p2.val:
+            return self.issubtree(p1.left, p2.left) and self.issubtree(p1.right, p2.right)
+        return False
 ```
-****  
+**解题关键：嵌套两个递归，注意拆分成两个函数。**  
 
 017
 -
