@@ -486,19 +486,61 @@ class Solution:
 ```
 **解题关键：嵌套两个递归，一个是递归遍历A树寻找与B树根节点相同的节点，一个是递归判断A树中该节点为根节点的子树是否和B树有相同结构。因此，要注意拆分成两个函数。**  
 
-017 
+017 二叉树的镜像
 -
 ```python
-
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回镜像树的根节点
+    def Mirror(self, root):
+        # write code herejavascript:window.close();
+        if root == None:
+            return None
+        root.left = self.Mirror(root.left)
+        root.right = self.Mirror(root.right)
+        root.left, root.right = root.right, root.left
+        return root
 ```
-****
+**递归：很常规，简单。**
 
-018
+```python
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回镜像树的根节点
+    def Mirror(self, root):
+        # write code herejavascript:window.close();
+        s = [root]
+        while s:
+            r = s.pop()
+            if r: 
+                r.left, r.right = r.right, r.left
+                s.append(r.left)
+                s.append(r.right)
+        return root
+```
+**迭代解法：利用栈(前序)或队列（层次）的存储特点进行迭代，常用技巧。**
+
+018 顺时针打印矩阵
 -
 ```python
-
+# -*- coding:utf-8 -*-
+class Solution:
+    # matrix类型为二维列表，需要返回列表
+    def printMatrix(self, matrix):
+        # write code here
+        return matrix and (list(matrix.pop(0)) + self.printMatrix(list(zip(*matrix))[::-1]))
 ```
-
+**巧用zip函数:zip() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表。**
 019
 -
 ```python
