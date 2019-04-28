@@ -541,19 +541,55 @@ class Solution:
         return matrix and (list(matrix.pop(0)) + self.printMatrix(list(zip(*matrix))[::-1]))
 ```
 **巧用zip函数:zip() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表。**
-019
+019 包含min函数的栈
 -
 ```python
-
+# -*- coding:utf-8 -*-
+class Solution:
+    def __init__(self):
+        self._stack = []
+    def push(self, node):
+        # write code here
+        m = self.min()
+        if node < m:
+            self._stack.append((node, node))
+        else:
+            self._stack.append((node, m))
+    def pop(self):
+        # write code here
+        self._stack.pop()
+    def top(self):
+        # write code here
+        if self._stack:
+            return self._stack[-1][0]
+        else:
+            return None
+    def min(self):
+        # write code here
+        if self._stack:
+            return self._stack[-1][-1]
+        else:
+            return float('inf')
 ```
-****
+**空间换时间，存下栈不同状态时的最小值。**
 
-020
+020 栈的压入、弹出序列
 -
 ```python
-
+# -*- coding:utf-8 -*-
+class Solution:
+    def IsPopOrder(self, pushV, popV):
+        # write code here
+        j = 0
+        s = []
+        for num in pushV:
+            s.append(num)
+            while j < len(popV) and s[-1] == popV[j]:
+                s.pop()
+                j = j + 1
+        return s==[]
 ```
-****
+**引入辅助栈进行模拟**
 
 021
 -
