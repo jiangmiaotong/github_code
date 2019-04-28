@@ -591,17 +591,46 @@ class Solution:
 ```
 **引入辅助栈进行模拟**
 
-021
+021 从上往下打印二叉树
 -
 ```python
-
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回从上到下每个节点值列表，例：[1,2,3]
+    def PrintFromTopToBottom(self, root):
+        # write code here
+        res = []
+        s = root and [root]
+        while s:
+            res.append(s[0].val)
+            node = s.pop(0)
+            if node.left:
+                s.append(node.left)
+            if node.right:
+                s.append(node.right)
+        return res
 ```
-****
-
+**利用队列存储特性，将节点进行逐层从左往右遍历。**
+```python
+class Solution:
+    # 返回从上到下每个节点值列表，例：[1,2,3]
+    def PrintFromTopToBottom(self, root):
+        # write code here
+        ans, level = [], root and [root]
+        while level:
+            ans += [n.val for n in level]
+            level = [k for n in level for k in (n.left, n.right) if k]
+        return ans
+```
+**python列表表达式，使代码更pythonic。**
 022
 -
 ```python
-
 ```
 ****
 
@@ -634,6 +663,95 @@ class Solution:
 ****
 
 027
+-
+```python
+
+```
+****
+
+028
+-
+```python
+
+```
+****
+
+029
+-
+```python
+
+```
+****
+
+030
+-
+```python
+
+```
+****
+
+031
+-
+```python
+
+```
+****
+
+032
+-
+```python
+
+```
+****
+
+033
+-
+```python
+
+```
+****
+034
+-
+```python
+
+```
+****
+035
+-
+```python
+
+```
+****
+
+036
+-
+```python
+
+```
+****
+
+037
+-
+```python
+
+```
+****
+
+038
+-
+```python
+
+```
+****
+
+039
+-
+```python
+
+```
+****
+
+040
 -
 ```python
 
