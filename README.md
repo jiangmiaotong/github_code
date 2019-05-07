@@ -17,7 +17,7 @@ class Solution:
         if pre == []:     
             return None
         root = TreeNode(pre[0])
-        cut = tin.index(pre[0])
+        cut = tin.index(pre[0])  ###直接取某值的位置
         root.left = self.reConstructBinaryTree(pre[1:cut+1], tin[:cut])
         root.right = self.reConstructBinaryTree(pre[cut+1:], tin[cut+1:])
         return root
@@ -628,11 +628,36 @@ class Solution:
         return ans
 ```
 **python列表表达式，使代码更pythonic。**
-022
+
+022 二叉搜索树的后序遍历序列
 -
 ```python
+# -*- coding:utf-8 -*-
+class Solution:
+    def VerifySquenceOfBST(self, sequence):
+        # write code here
+        if sequence == []:
+            return False
+        node = sequence[-1]
+        index = len(sequence) - 1
+        for i in sequence:
+            if i > node:
+                index = sequence.index(i)
+                break
+        left = sequence[:index]
+        right = sequence[index:len(sequence)-1]
+        if not all(x>node for x in right):
+            return False
+        f_left = f_right = True
+        if left:
+            f_left = self.VerifySquenceOfBST(left)
+        if right:
+            f_right = self.VerifySquenceOfBST(right)
+        return f_left and f_right
 ```
-****
+**解题思路：抓住二叉树后序遍历和二叉搜索树的特性。
+二叉排序树的性质：左子树上所有节点的值均小于它的根节点；右子树上所有节点的值均大于它的根节点。
+二叉排序树后序遍历的性质：序列最后一个数字是根节点，序列剩余部分分成两部分，前一部分是左子树，后一部分是右子树。**
 
 023
 -
